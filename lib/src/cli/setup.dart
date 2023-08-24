@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart';
 import 'package:file/file.dart';
@@ -23,6 +25,8 @@ class CLISetup {
     final file = dir.childFile('sentry-cli${platform.executableExtension}');
 
     final source = _sources[platform]!.from(sentryCliCdnUrl);
+
+    log(sentryCliCdnUrl);
 
     if (!await _check(source, file)) {
       await _download(source, file);
