@@ -220,7 +220,8 @@ class Configuration {
     try {
       cliPath = await injector.get<CLISetup>().download(
             platform,
-            saveDirectory: sentryCliSaveDir,
+            sentryCliCdnUrl: sentryCliCdnUrl,
+            sentryCliSaveDir: sentryCliSaveDir,
           );
     } on Exception catch (e) {
       Log.error("Failed to download Sentry CLI: $e");
