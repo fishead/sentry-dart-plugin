@@ -17,16 +17,14 @@ class CLISetup {
 
   Future<String> download(
     HostPlatform platform, {
-    String sentryCliCdnUrl = 'https://downloads.sentry-cdn.com/sentry-cli/',
-    String sentryCliSaveDir = '.dart_tool/pub/bin/sentry_dart_plugin',
+    String cdnUrl = 'https://downloads.sentry-cdn.com/sentry-cli/',
+    String saveDir = '.dart_tool/pub/bin/sentry_dart_plugin',
   }) async {
-    final dir = injector.get<FileSystem>().directory(sentryCliSaveDir);
+    final dir = injector.get<FileSystem>().directory(saveDir);
     await dir.create(recursive: true);
     final file = dir.childFile('sentry-cli${platform.executableExtension}');
 
-    final source = _sources[platform]!.from(sentryCliCdnUrl);
-
-    log(sentryCliCdnUrl);
+    final source = _sources[platform]!.from(cdnUrl);
 
     if (!await _check(source, file)) {
       await _download(source, file);

@@ -5,17 +5,15 @@ class CLISource {
   CLISource(String downloadUrl, this.hash)
       : downloadUrl = Uri.parse(downloadUrl);
 
-  CLISource from(String base) {
+  CLISource from(String prefix) {
     final pathSegmentsLen = downloadUrl.pathSegments.length;
     final version = downloadUrl.pathSegments[pathSegmentsLen - 2];
     final name = downloadUrl.pathSegments[pathSegmentsLen - 1];
 
-    final newPath = [
-      ...downloadUrl.pathSegments.sublist(0, pathSegmentsLen - 2),
-      version,
-      name,
-    ].join("/");
-    final newDownloadUrl = downloadUrl.resolve(newPath).toString();
+    final prefixUrl = Uri.parse(prefix);
+    final newDownloadUrl = prefixUrl.replace(
+      pathSegments: [...prefixUrl.pathSegments, version, name],
+    ).toString();
     return CLISource(newDownloadUrl, hash);
   }
 }
