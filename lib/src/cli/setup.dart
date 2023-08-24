@@ -10,16 +10,17 @@ import 'sources.dart';
 
 class CLISetup {
   final /*CLISources*/ Map<HostPlatform, CLISource> _sources;
-  final _directory = '.dart_tool/pub/bin/sentry_dart_plugin';
+  final String saveDirectory;
   final String sentryCliCdnUrl;
 
   CLISetup(
     this._sources, {
     this.sentryCliCdnUrl = 'https://downloads.sentry-cdn.com/sentry-cli/',
+    this.saveDirectory = '.dart_tool/pub/bin/sentry_dart_plugin',
   });
 
   Future<String> download(HostPlatform platform) async {
-    final dir = injector.get<FileSystem>().directory(_directory);
+    final dir = injector.get<FileSystem>().directory(saveDirectory);
     await dir.create(recursive: true);
     final file = dir.childFile('sentry-cli${platform.executableExtension}');
 

@@ -83,6 +83,9 @@ class Configuration {
   /// Place to download sentry-cli
   late String sentryCliCdnUrl;
 
+  /// Place to save sentry-cli binary
+  late String sentryCliSaveDir;
+
   dynamic _getPubspec() {
     final file = injector.get<FileSystem>().file("pubspec.yaml");
     if (!file.existsSync()) {
@@ -106,6 +109,9 @@ class Configuration {
     sentryCliCdnUrl = config?['sentry_cli_cdn_url'].toString() ??
         environments['SENTRYCLI_CDNURL'] ??
         'https://downloads.sentry-cdn.com/sentry-cli/';
+    sentryCliSaveDir = config?['sentry_cli_save_dir'].toString() ??
+        environments['SENTRYCLI_SAVE_DIR'] ??
+        '.dart_tool/pub/bin/sentry_dart_plugin';
 
     await _findAndSetCliPath();
 

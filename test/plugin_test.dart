@@ -277,4 +277,7 @@ class MockCLI implements CLISetup {
 
   @override
   String get sentryCliCdnUrl => 'https://downloads.sentry-cdn.com/sentry-cli/';
+
+  @override
+  String get saveDirectory => '.dart_tool/pub/bin/sentry_dart_plugin';
 }

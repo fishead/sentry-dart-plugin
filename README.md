@@ -78,6 +78,7 @@ sentry:
 | commits | Release commits integration | default: auto | no | - |
 | ignore_missing | Ignore missing commits previously used in the release | default: false | no | - |
 | sentry_cli_cdn_url | Alternative place to download sentry-cli | default: https://downloads.sentry-cdn.com/sentry-cli/ | no | SENTRYCLI_CDNURL |
+| sentry_cli_save_dir | Alternative place to save sentry-cli binary | default: .dart_tool/pub/bin/sentry_dart_plugin | no | SENTRYCLI_SAVE_DIR |
 
 ## Troubleshooting
 
