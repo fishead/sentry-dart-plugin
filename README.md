@@ -77,6 +77,7 @@ sentry:
 | web_build_path | The web build folder | default: build/web (string)  | no | - |
 | commits | Release commits integration | default: auto | no | - |
 | ignore_missing | Ignore missing commits previously used in the release | default: false | no | - |
+| sentry_cli_cdn_url | Alternative place to download sentry-cli | default: https://downloads.sentry-cdn.com/sentry-cli/ | no | SENTRYCLI_CDNURL |
 
 ## Troubleshooting
 

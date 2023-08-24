@@ -274,4 +274,7 @@ class MockCLI implements CLISetup {
 
   @override
   Future<String> download(HostPlatform platform) => Future.value(name);
+
+  @override
+  String get sentryCliCdnUrl => 'https://downloads.sentry-cdn.com/sentry-cli/';
 }

@@ -80,6 +80,9 @@ class Configuration {
   /// https://docs.sentry.io/product/cli/releases/#dealing-with-missing-commits
   late bool ignoreMissing;
 
+  /// Place to download sentry-cli
+  late String sentryCliCdnUrl;
+
   dynamic _getPubspec() {
     final file = injector.get<FileSystem>().file("pubspec.yaml");
     if (!file.existsSync()) {
@@ -97,9 +100,14 @@ class Configuration {
     const taskName = 'reading config values';
     Log.startingTask(taskName);
 
-    await _findAndSetCliPath();
     final pubspec = _getPubspec();
     final config = pubspec['sentry'] as YamlMap?;
+
+    sentryCliCdnUrl = config?['sentry_cli_cdn_url'].toString() ??
+        environments['SENTRYCLI_CDNURL'] ??
+        'https://downloads.sentry-cdn.com/sentry-cli/';
+
+    await _findAndSetCliPath();
 
     release = config?['release']?.toString() ?? environments['SENTRY_RELEASE'];
     dist = config?['dist']?.toString() ?? environments['SENTRY_DIST'];
