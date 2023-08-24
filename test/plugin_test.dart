@@ -273,11 +273,12 @@ class MockCLI implements CLISetup {
   static const name = 'mock-cli';
 
   @override
-  Future<String> download(HostPlatform platform) => Future.value(name);
+  Future<String> download(
+    HostPlatform platform, {
+    String saveDirectory = '.dart_tool/pub/bin/sentry_dart_plugin',
+  }) =>
+      Future.value(name);
 
   @override
   String get sentryCliCdnUrl => 'https://downloads.sentry-cdn.com/sentry-cli/';
-
-  @override
-  String get saveDirectory => '.dart_tool/pub/bin/sentry_dart_plugin';
 }
